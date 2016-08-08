@@ -177,7 +177,7 @@ class DNN(object):
             if len(daug_collection) > i:
                 if daug_collection[i] is not None:
                     daug_dict[self.inputs[i]] = daug_collection[i]
-        self.trainer.fit(feed_dicts, val_feed_dicts=val_feed_dicts,
+        loss, accuracy, validation_loss, validation_accuracy = self.trainer.fit(feed_dicts, val_feed_dicts=val_feed_dicts,
                          n_epoch=n_epoch,
                          show_metric=show_metric,
                          snapshot_step=snapshot_step,
@@ -187,6 +187,7 @@ class DNN(object):
                          daug_dict=daug_dict,
                          excl_trainops=excl_trainops,
                          run_id=run_id)
+        return loss, accuracy, validation_loss, validation_accuracy
 
     def predict(self, X):
         """ Predict.

@@ -317,6 +317,8 @@ class Trainer(object):
                 # Set back train_ops
                 self.train_ops = original_train_ops
 
+        return train_op.loss_value, train_op.acc_value, train_op.val_loss, train_op.val_acc
+
     def save(self, model_file, global_step=None):
         """ save.
 
